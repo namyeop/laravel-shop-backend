@@ -7,10 +7,18 @@ use Livewire\Component;
 
 class Login extends Component
 {
-
-    public $email;
+    public $email = 'default@default.com';
     public $password;
     public $token;
+
+    public function updatingPassword()
+    {
+        if ($this->password < 8) {
+            $this->addError('password', 'Password must be at least 8 characters.');
+        } else {
+            $this->removeError('password');
+        }
+    }
 
     public function login()
     {

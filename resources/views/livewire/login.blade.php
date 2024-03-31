@@ -10,11 +10,12 @@
                 <label for="email">{{ __('E-Mail Address') }}</label>
                 <input wire:model="email" type="email" class="form-control" id="email" aria-describedby="emailHelp"
                   placeholder="Enter email">
+                {{ $email }}
                 @error('email')
                   <span class="text-danger">{{ $message }}</span>
                 @enderror
                 <label for="password" class="mt-3">{{ __('Password') }}</label>
-                <input wire:model='password' type="password" class="form-control mt-3" id="password"
+                <input wire:model.live='password' type="password" class="form-control mt-3" id="password"
                   placeholder="Password">
                 @error('password')
                   <span class="text-danger">{{ $message }}</span>

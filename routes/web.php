@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Items;
 use App\Livewire\Login;
 use App\Livewire\Me;
 use Illuminate\Support\Facades\Route;
@@ -30,3 +31,5 @@ Route::post('/tokens/create', function (Request $request) {
 
     return ['token' => $token->plainTextToken];
 });
+
+Route::get('/items', Items::class)->name('items');
