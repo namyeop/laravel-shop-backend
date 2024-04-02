@@ -6,7 +6,7 @@
     <h3>상품정보</h3>
     <h4>티셔츠(기본)</h4>
     <h5>가격: 10,000원</h5>
-    <form wire:submit='check'>
+    <form wire:submit='submit'>
       <fieldset>
         <legend>Size</legend>
         <input wire:model='size' type="radio" id="S" name="size" value="S" checked />
@@ -32,8 +32,21 @@
 
 @script
   <script>
-    $wire.on('check', () => {
-      alert($wire.size + ' ' + $wire.color + ' 결제가 완료되었습니다.')
+    $wire.on('check', async () => {
+      const response = await PortOne.requestPayment({
+        // Store ID 설정
+        storeId: "store-51dbc029-90c0-4103-a648-d1145a96db91",
+        // 채널 키 설정
+        channelKey: "channel-key-ff0b4d74-bc27-431a-9fbd-b22b2126c77b",
+        paymentId: `payment-${crypto.randomUUID()}`,
+        orderName: "티셔츠(기본) - " + $wire.size + " - " + $wire.color,
+        totalAmount: 10000,
+        currency: "CURRENCY_KRW",
+        payMethod: "CARD",
+        redirectUrl: `http://localhost/payment-redirect`,
+      });
+
+      console.log(response)
     })
   </script>
 @endscript

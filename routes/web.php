@@ -3,6 +3,7 @@
 use App\Livewire\Items;
 use App\Livewire\Login;
 use App\Livewire\Me;
+use App\Livewire\PaymentComplete;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -33,3 +34,4 @@ Route::post('/tokens/create', function (Request $request) {
 });
 
 Route::get('/items', Items::class)->name('items');
+Route::get('/payment-redirect', PaymentComplete::class)->name('payment-complete');

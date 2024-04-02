@@ -10,7 +10,12 @@ class Items extends Component
     public $size = '';
     public $color = '';
 
-    public function check()
+    public function check($size, $color)
+    {
+        // Do something with the size and color
+    }
+
+    public function submit()
     {
         $this->dispatch('check', ['size' => $this->size, 'color' => $this->color]);
     }
